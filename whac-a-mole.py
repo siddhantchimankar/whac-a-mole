@@ -207,6 +207,8 @@ def whac_a_mole():
             sleep(1)
             hole9.config(state='disabled', text='', bg='black')
     replaybtn.config(state='normal')
+    winsound.PlaySound('tada1.wav',winsound.SND_FILENAME)
+    
     global whacks
     if whacks < 10:
         remark.config(text="POOR")
