@@ -3,6 +3,10 @@ from tkinter import *
 from time import *
 import threading
 import random
+import winsound
+import sys
+
+
 
 whacks = 0
 hole = 0
@@ -22,6 +26,7 @@ remark.place(x=130, y=107)
 
 
 def onwhack():
+    
     global hole
     if hole == 1:
         hole1.config(state='disabled', text='*_*', bg='red', fg='black')
@@ -44,6 +49,8 @@ def onwhack():
     global whacks
     whacks += 1
     scorelabel.config(text="* " + str(whacks) + " *")
+    winsound.PlaySound('ow.wav',winsound.SND_FILENAME)
+    
 
 
 hole1 = Button(
@@ -117,6 +124,8 @@ def start():
     remark.config(text="")
     replaybtn.config(state='disabled')
     t = threading.Thread(target=whac_a_mole)
+    s = threading.Thread(target = startsound)
+    s.start()
     t.start()
 
 
@@ -224,6 +233,9 @@ def ready_set_whack():
     scorelabel.config(text="WHACK!!")
     sleep(1)
     scorelabel.config(text="0")
+    
+def startsound():
+    winsound.PlaySound('red.wav',winsound.SND_FILENAME)
 
 
 replaybtn = Button(text="Play Again", command=start)
