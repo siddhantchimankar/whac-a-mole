@@ -3,8 +3,8 @@ from tkinter import *
 from time import *
 import threading
 import random
-import winsound
-import sys
+from playsound import playsound
+
 
 
 
@@ -49,7 +49,7 @@ def onwhack():
     global whacks
     whacks += 1
     scorelabel.config(text="* " + str(whacks) + " *")
-    winsound.PlaySound('ow.wav',winsound.SND_FILENAME)
+    playsound('sounds/ow.wav')
     
 
 
@@ -207,7 +207,7 @@ def whac_a_mole():
             sleep(1)
             hole9.config(state='disabled', text='', bg='black')
     replaybtn.config(state='normal')
-    winsound.PlaySound('tada1.wav',winsound.SND_FILENAME)
+    playsound('sounds/tada1.wav')
     
     global whacks
     if whacks < 10:
@@ -237,7 +237,7 @@ def ready_set_whack():
     scorelabel.config(text="0")
     
 def startsound():
-    winsound.PlaySound('red.wav',winsound.SND_FILENAME)
+    playsound('sounds/red.wav')
 
 
 replaybtn = Button(text="Play Again", command=start)
